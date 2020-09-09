@@ -1,0 +1,111 @@
+<!--
+  ~ /*******************************************************
+  ~   * Copyright (C) 2020 Bank of Canada>
+  ~   * This file is part of {project}.
+  ~   * {project} can not be copied and/or distributed without the
+  ~   * permission of Bank of Canada
+  ~   *******************************************************/
+  -->
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4" lang="en">
+<head>
+	<title>Station List</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" rel="stylesheet"
+		  integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+</head>
+<body>
+<div class="container">
+	<p>
+	<h3>Climate Summary By Stations View </h3>
+	</p>
+</div>
+<div class="container">
+
+	<form action="#" th:action="@{/stations/all}"  method="post" th:object="${climateFilter}">
+		<label for="fromYear">From Date</label>
+		<select id="fromYear" name="fromYear" th:field="*{fromYear}" >
+			<option selected value="0">None</option>
+			<option  value="2017" >2017</option>
+			<option value="2018">2018</option>
+		</select>
+		<select id="fromMonth" name="fromMonth" th:field="*{fromMonth}" >
+			<option selected value="0">None</option>
+			<option  value="1">Jan</option>
+			<option value="2">Feb</option>
+			<option value="3">Mar</option>
+			<option value="4">Apr</option>
+			<option value="5">May</option>
+			<option value="6">Jun</option>
+			<option value="7">Jul</option>
+			<option value="8">Aug</option>
+			<option value="9">Sep</option>
+			<option value="10">Oct</option>
+			<option value="11">Nov</option>
+			<option value="12">Dec</option>
+		</select>
+		<label for="toYear">To Date</label>
+		<select id="toYear" name="toYear" th:field="*{toYear}">
+			<option selected value="0">None</option>
+			<option  value="2017">2017</option>
+			<option value="2018">2018</option>
+		</select>
+		<select id="toMonth" name="toMonth"  th:field="*{toMonth}">
+			<option selected value="0">None</option>
+			<option  value="1">Jan</option>
+			<option value="2">Feb</option>
+			<option value="3">Mar</option>
+			<option value="4">Apr</option>
+			<option value="5">May</option>
+			<option value="6">Jun</option>
+			<option value="7">Jul</option>
+			<option value="8">Aug</option>
+			<option value="9">Sep</option>
+			<option value="10">Oct</option>
+			<option value="11">Nov</option>
+			<option value="12">Dec</option>
+		</select>
+		<button type="submit" name="View List">view list</button>
+	</form>
+</div>
+<div>
+	<hr class="rounded">
+</div>
+<div class="container">
+	<div class="row">
+		<div class="col-sm-12">
+			<h3> Stations </h3>
+		</div>
+	</div>
+	<div class="row" align="center">
+		<div class="col-sm-2">
+			<table class="table table-bordered table-sm">
+				<thead class="thead-dark">
+				<tr>
+					<th scope="col"> Station Name </th>
+					<th scope="col"> Date </th>
+					<th scope="col"> Mean Temperature </th>
+				</tr>
+				</thead>
+				<tbody>
+				<tr th:if="${all_stations == null || all_stations.empty}">
+					<td colspan="3"> No stations found </td>
+				</tr>
+				<tr th:each="station : ${all_stations} " >
+					<td><span><a th:href="@{/stations/showDetails(stationId=${station.stationId})}"><span th:text="${station.stationName}" > Station Name </span></a></span></td>
+					<td><span th:text="${station.date}"> Date </span></td>
+					<td><span th:text="${station.meanTemp}"> Mean Temp. </span></td>
+				</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+
+
+
+</body>
+</html>
+
