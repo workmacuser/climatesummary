@@ -31,7 +31,7 @@ However, it can run on any linux kernel as long as pre-requisite software(s) are
 The application can be run by following the steps below:
 
 * Clone the application 
-git clone https://github.com/rob-chu/climatesummary.git
+git clone  https://github.com/workmacuser/climatesummary.git
 
 * Execute the application 
 ./mvnw spring-boot:run
